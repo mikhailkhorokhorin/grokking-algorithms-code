@@ -1,34 +1,34 @@
 book = {}
 
-book["апельсин"] = 0.67
-book["молоко"] = 1.49
-book["авокадо"] = 1.49
+book["apple"] = 0.67
+book["milk"] = 1.49
+book["avocado"] = 1.49
 
 print(book)
-print(book["авокадо"])
+print(book["avocado"])
 
 phone_book = {}
 
-phone_book["Дженни"] = 8675309
-phone_book["служба спасения"] = 911
+phone_book["jenny"] = 8675309
+phone_book["emergency"] = 911
 
-print(phone_book["Дженни"])
+print(phone_book["jenny"])
 
 voted = {}
-value = voted.get("Том")
+value = voted.get("tom")
 
 
 def check_voter(name):
     if voted.get(name):
-        print("Выгнать его!")
+        print("kick them out!")
     else:
         voted[name] = True
-        print("Допустить к голосованию!")
+        print("let them vote!")
 
 
-check_voter("Том")
-check_voter("Майк")
-check_voter("Майк")
+check_voter("tom")
+check_voter("mike")
+check_voter("mike")
 
 cache = {}
 
