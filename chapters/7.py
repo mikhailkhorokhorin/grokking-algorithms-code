@@ -1,60 +1,19 @@
-graph = {
-    "start": {
-        "a": 6,
-        "b": 2
-    },
-    "a": {
-        "fin": 1,
-    },
-    "b": {
-        "a": 3,
-        "fin": 5
-    },
-    "fin": {},
-}
-
-infinity = float("inf")
-
-costs = {
-    "a": 6,
-    "b": 2,
-    "fin": infinity,
-}
-
-parents = {
-    "a": "start",
-    "b": "start",
-    "fin": None
-}
-
-processed = []
+from collections import deque
+from os import listdir
+from os.path import isfile, join
 
 
-def find_lowest_cost_node(costs):
-    lowest_cost = infinity
-    lowest_cost_node = None
-    for node in costs:
-        cost = costs[node]
-        if cost < lowest_cost and node not in processed:
-            lowest_cost_node = node
-            lowest_cost = cost
-    return lowest_cost_node
+def print_names(start_dir):
+    queue = deque()
+    queue.append(start_dir)
+    while queue:
+        dir = queue.popleft()
+        for file in sorted(listdir(dir)):
+            fullpath = join(dir, file)
+            if isfile(fullpath):
+                print(file)
+            else:
+                queue.append(fullpath)
 
 
-def dijkstra_algorithm():
-    node = find_lowest_cost_node(costs)
-    while node is not None:
-        cost = costs[node]
-        neighbors = graph[node]
-        for n in neighbors.keys():
-            new_cost = cost + neighbors[n]
-            if costs[n] > new_cost:
-                costs[n] = new_cost
-                parents[n] = node
-        processed.append(node)
-        node = find_lowest_cost_node(costs)
-    return costs["fin"], parents
-
-
-cost, path = dijkstra_algorithm()
-print(cost, path)
+print_names("/")
