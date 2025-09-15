@@ -1,4 +1,4 @@
-def binary_search(arr: list, item):
+def binary_search(arr: list, item) -> int | None:
     low = 0
     high = len(arr) - 1
     while low <= high:
@@ -9,5 +9,5 @@ def binary_search(arr: list, item):
         if guess > item:
             high = mid - 1
         else:
-            high = mid + 1
+            low = mid + 1
     return None
